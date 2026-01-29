@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Bonzai payment method with credit/debit card icons -->
+        <record id="payment_method_bonzai" model="payment.method">
+            <field name="name">Credit / Debit Card</field>
+            <field name="code">bonzai</field>
+            <field name="sequence">100</field>
+            <field name="image" type="base64" file="payment_bonzai/static/src/img/credit_debit_card.png"/>
+            <field name="support_refund">none</field>
+            <field name="support_tokenization">False</field>
+            <field name="active">True</field>
+            <field name="provider_ids" eval="[(4, ref('payment_bonzai.payment_provider_bonzai'))]"/>
+        </record>
+
+    </data>
+</odoo>

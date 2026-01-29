@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Bonzai redirect form template -->
+    <record id="bonzai_redirect_form" model="ir.ui.view">
+        <field name="name">bonzai.redirect.form</field>
+        <field name="type">qweb</field>
+        <field name="arch" type="xml">
+            <!-- Form with hidden fields for URL parameters (expires, signature) -->
+            <form t-att-action="api_url" method="get">
+                <t t-foreach="url_params" t-as="param">
+                    <input type="hidden" t-att-name="param" t-att-value="url_params[param]"/>
+                </t>
+            </form>
+        </field>
+    </record>
+
+    <!-- Bonzai icon/logo display template -->
+    <template id="payment_bonzai_icon" name="Bonzai Icon">
+        <span class="payment-provider-icon">
+            <img src="/payment_bonzai/static/description/icon.png"
+                 alt="Bonzai"
+                 title="Pay with Bonzai"
+                 style="max-height: 24px;"/>
+        </span>
+    </template>
+
+</odoo>

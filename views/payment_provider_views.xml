@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Bonzai provider form view extension -->
+    <record id="payment_provider_form_bonzai" model="ir.ui.view">
+        <field name="name">payment.provider.form.bonzai</field>
+        <field name="model">payment.provider</field>
+        <field name="inherit_id" ref="payment.payment_provider_form"/>
+        <field name="arch" type="xml">
+            <group name="provider_credentials" position="inside">
+                <group string="Bonzai Credentials" invisible="code != 'bonzai'">
+                    <field name="bonzai_api_token"
+                           password="True"
+                           placeholder="Enter your Bonzai API Token"/>
+                    <field name="bonzai_product_uuid"
+                           placeholder="Enter your Bonzai Product UUID"/>
+                </group>
+            </group>
+            <group name="provider_credentials" position="after">
+                <group string="Webhook Configuration"
+                       invisible="code != 'bonzai'"
+                       col="1">
+                    <div class="alert alert-info" role="alert">
+                        <p class="mb-2">
+                            <strong>Configure this webhook URL in your Bonzai dashboard:</strong>
+                        </p>
+                        <field name="bonzai_webhook_url"
+                               widget="CopyClipboardChar"
+                               readonly="1"
+                               class="fw-bold"/>
+                        <p class="mt-2 mb-0 text-muted small">
+                            Go to <a href="https://www.bonzai.pro/business" target="_blank">bonzai.pro/business</a>
+                            and paste this URL in the webhook configuration section.
+                        </p>
+                    </div>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

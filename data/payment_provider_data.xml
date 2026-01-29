@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <!-- Bonzai payment provider -->
+        <record id="payment_provider_bonzai" model="payment.provider">
+            <field name="name">Bonzai</field>
+            <field name="code">bonzai</field>
+            <field name="state">disabled</field>
+            <field name="is_published">False</field>
+            <!-- payment_method_ids is set via provider_ids on payment.method -->
+            <field name="redirect_form_view_id" ref="payment_bonzai.bonzai_redirect_form"/>
+            <field name="pre_msg">You will be redirected to Bonzai to complete your payment.</field>
+            <field name="pending_msg">Your payment is being processed. You will be notified once it is confirmed.</field>
+            <field name="done_msg">Your payment has been successfully processed. Thank you for your purchase!</field>
+            <field name="cancel_msg">Your payment has been canceled.</field>
+        </record>
+
+    </data>
+
+    <!-- Cron job for reconciliation -->
+    <data noupdate="0">
+        <record id="ir_cron_bonzai_reconciliation" model="ir.cron">
+            <field name="name">Payment Provider: Bonzai - Reconcile pending transactions</field>
+            <field name="model_id" ref="payment.model_payment_transaction"/>
+            <field name="state">code</field>
+            <field name="code">model._bonzai_cron_reconcile_pending()</field>
+            <field name="interval_number">15</field>
+            <field name="interval_type">minutes</field>
+            <field name="active">True</field>
+        </record>
+    </data>
+</odoo>
