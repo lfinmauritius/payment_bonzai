@@ -1,12 +1,10 @@
 # Payment Provider: Bonzai
 
-> ⚠️ **BETA** - This module is currently in beta testing. Use in production at your own risk.
-
 Odoo payment provider integration for [Bonzai](https://www.bonzai.pro).
 
 ![Odoo Version](https://img.shields.io/badge/Odoo-19.0-blue)
 ![License](https://img.shields.io/badge/License-LGPL--3-green)
-![Status](https://img.shields.io/badge/Status-Beta-orange)
+![Status](https://img.shields.io/badge/Status-Stable-green)
 
 ## Overview
 
