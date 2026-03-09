@@ -97,6 +97,19 @@ class PaymentProvider(models.Model):
                     "Invalid Product UUID format. It should contain only alphanumeric characters."
                 ))
 
+    # === CRUD OVERRIDES ===#
+
+    def write(self, vals):
+        """ Override to sync payment method countries when provider countries change. """
+        result = super().write(vals)
+        if 'available_country_ids' in vals:
+            for provider in self.filtered(lambda p: p.code == 'bonzai'):
+                bonzai_methods = provider.payment_method_ids.filtered(
+                    lambda pm: pm.code == 'bonzai'
+                )
+                bonzai_methods.supported_country_ids = provider.available_country_ids
+        return result
+
     # === BUSINESS METHODS ===#
 
     def _get_supported_currencies(self):
